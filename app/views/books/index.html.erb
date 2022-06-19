@@ -1,6 +1,16 @@
-<% @book.each do |book| %>
-<div>
-  <h1>Books</h1>
-  <p>Title：<%= link_to book.title, book_path(book.id) %></p>
-  <p>Opinion：<%= book.body %></p>
+<%= render 'list', book: @book, user: @user %>
+
+<h1>Books</h1>
+
+<table>
+  <tr>
+    <th><p>Title</p></th>
+    <th><p>Opinion</p></th>
+  </tr>
+ <% @books.each do |book| %>
+  <tr>
+    <td><p><%= link_to book.title, book_path(book.id) %></p></td>
+    <td><p><%= book.body %></p></td>
+  </tr>
+
 <% end %>
