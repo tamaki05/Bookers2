@@ -26,10 +26,23 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path
+    if @user.update(user_params)
+       flash[:notice] = "You have updated user successfully."
+      redirect_to user_path
+    else
+      render :edit
+    end
   end
 
+  def log_out
+    @user = User.find(params[:id])
+    if @user.log_out(user_params)
+       flash[:notice] = "Signed out successfully."
+       redirect_to root_path
+    else
+      render show
+    end
+  end
   private
 
   def user_params
