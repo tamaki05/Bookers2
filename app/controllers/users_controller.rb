@@ -5,6 +5,15 @@ class UsersController < ApplicationController
     @books = @user.books
   end
 
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to books_path, notice: "Welcome! You have signed up successfully."
+    else
+      render :root_path
+    end
+  end
+
   def index
     @users = User.all
     @user = current_user
