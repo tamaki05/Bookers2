@@ -9,7 +9,9 @@ class BooksController < ApplicationController
      if @book.save
        redirect_to books_path
      else
-       render :new
+       @books = Book.all
+       @user = current_user
+       render :index
      end
   end
 
